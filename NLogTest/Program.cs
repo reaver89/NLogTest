@@ -1,53 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Threading;
-using Microsoft.Practices.ServiceLocation;
-using Microsoft.Practices.Unity;
-using NLog;
-
+﻿using Autofac;
+using NLogTest.Logging;
 
 namespace NLogTest
 {
     class Program
     {
+
+        private static IContainer Container { get; set; }
+
         static void Main(string[] args)
         {
-            ConfigureContainer();
+            RegisterComponents();
 
-
-            ILogAdapter logger = ServiceLocator.Current.GetInstance<ILogFabric>().GetLogger();
-
-            logger.Debug("test");
-            var networks = new List<int>() { 1, 2, 3, 4, 5 };
-
-            logger.Info("Following networks will be processed:{0}", string.Join(",", networks.Select(x => x)));
-
-            logger.Info("Start networks processing");
-            foreach (var network in networks)
+            using (var scope = Container.BeginLifetimeScope())
             {
-
-                logger.Info("Start processing {0} network", network);
-                var networkProcessor = new NetworkProcessor(network);
-                var thread = new Thread(networkProcessor.Process);
-                thread.Start();
-                logger.Error("error");
-                logger.Info("Finish processing {0} network", network);
-
+                var application = scope.Resolve<IApplication>();
+                application.Run();
             }
-            logger.Info("Finish networks processing");
+
         }
 
-        private static void ConfigureContainer()
+        private static void RegisterComponents()
         {
-            var container = new UnityContainer();
+            var builder = new ContainerBuilder();
 
-            container.RegisterType<ILogAdapter,NLogLogAdaper>(new InjectionConstructor("logger"));
-            container.RegisterType<ILogFabric, NLogFabric>();
+            builder.RegisterModule<LogModule>();
+            builder.RegisterModule<ApplicationModule>();
 
-            var locator = new UnityServiceLocator(container);
-            ServiceLocator.SetLocatorProvider(() => locator);
+            Container = builder.Build();
         }
     }
 }

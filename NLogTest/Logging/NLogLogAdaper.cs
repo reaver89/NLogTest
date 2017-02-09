@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NLog;
+﻿using NLog;
 
-namespace NLogTest
+namespace NLogTest.Logging
 {
     public class NLogLogAdaper : ILogAdapter
     {
@@ -16,9 +11,9 @@ namespace NLogTest
             _logger = LogManager.GetCurrentClassLogger();
         }
 
-        public NLogLogAdaper(string name)
+        public NLogLogAdaper(Logger logger)
         {
-            _logger = LogManager.GetLogger(name);
+            _logger = logger;
         }
 
         public void Debug(string message)

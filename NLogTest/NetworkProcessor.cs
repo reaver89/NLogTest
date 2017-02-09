@@ -1,21 +1,17 @@
 using System.Threading;
-using Microsoft.Practices.ServiceLocation;
-using NLog;
+using NLogTest.Logging;
 
 namespace NLogTest
 {
     public class NetworkProcessor
     {
-        private int NetworkId { get; set; }
+        public int NetworkId { get; set; }
 
-        private ILogAdapter logger;
+        private readonly ILogAdapter _logger;
 
-        public NetworkProcessor(int networkId)
+        public NetworkProcessor(ILogAdapter logger)
         {
-            NetworkId = networkId;
-            //FileTarget target = LogManager.Configuration.FindTargetByName<FileTarget>("networkFile");
-            //target.FileName = $"network{networkId}_{target.FileName}";
-            logger = ServiceLocator.Current.GetInstance<ILogFabric>().GetLogger(this.GetType().FullName);
+            _logger = logger;
         }
 
         public void Process()
@@ -25,24 +21,24 @@ namespace NLogTest
             WorkwithDF();
         }
 
-        public void CreateClientDbSchema()
+        private void CreateClientDbSchema()
         {
-            logger.Debug(" Start schema creation for {0} network", NetworkId);
+            _logger.Debug(" Start schema creation for {0} network", NetworkId);
             Thread.Sleep(1000);
-            logger.Error("Exception in creation of schema for {0} network", NetworkId);
-            logger.Debug("Finish schema creation for {0} network", NetworkId);
+            _logger.Error("Exception in creation of schema for {0} network", NetworkId);
+            _logger.Debug("Finish schema creation for {0} network", NetworkId);
         }
 
-        public void PopulateClientDb()
+        private void PopulateClientDb()
         {
-            logger.Debug(" Start data population for {0} network", NetworkId);
+            _logger.Debug(" Start data population for {0} network", NetworkId);
             Thread.Sleep(1000);
-            logger.Debug(" Finish data population for {0} network", NetworkId);
+            _logger.Debug(" Finish data population for {0} network", NetworkId);
         }
 
-        public void WorkwithDF()
+        private void WorkwithDF()
         {
-            logger.Error(" Errpr during DF recreation {0} ", NetworkId);
+            _logger.Error(" Errpr during DF recreation {0} ", NetworkId);
             Thread.Sleep(1000);
         }
     }
