@@ -16,9 +16,9 @@ namespace NLogTest
             _logger = LogManager.GetCurrentClassLogger();
         }
 
-        public NLogLogAdaper(Logger logger)
+        public NLogLogAdaper(string name)
         {
-            _logger = logger;
+            _logger = LogManager.GetLogger(name);
         }
 
         public void Debug(string message)

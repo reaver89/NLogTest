@@ -43,7 +43,7 @@ namespace NLogTest
         {
             var container = new UnityContainer();
 
-            //container.RegisterType<ILogAdapter>(new InjectionFactory(f => new NLogLogAdaper(LogManager.GetCurrentClassLogger())));
+            container.RegisterType<ILogAdapter,NLogLogAdaper>(new InjectionConstructor("logger"));
             container.RegisterType<ILogFabric, NLogFabric>();
 
             var locator = new UnityServiceLocator(container);

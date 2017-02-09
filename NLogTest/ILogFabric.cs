@@ -6,6 +6,5 @@ namespace NLogTest
     {
         ILogAdapter GetLogger();
         ILogAdapter GetLogger(string name);
-        ILogAdapter GetLogger(string name, Type type);
     }
 }

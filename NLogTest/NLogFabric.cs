@@ -16,12 +16,7 @@ namespace NLogTest
 
         public ILogAdapter GetLogger(string name)
         {
-            return new NLogLogAdaper(LogManager.GetLogger(name));
-        }
-
-        public ILogAdapter GetLogger(string name,Type type)
-        {
-            return new NLogLogAdaper(LogManager.GetLogger(name, type));
+            return new NLogLogAdaper(name);
         }
     }
 }
