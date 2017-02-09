@@ -29,6 +29,7 @@ namespace NLogTest
                 _logger.Info("Start processing {0} network", network);
 
                 var thread = new Thread(_networkProcessor.Process);
+                thread.Name = $"networkid_{network}";
                 thread.Start();
                 _logger.Error("error");
                 _logger.Info("Finish processing {0} network", network);
