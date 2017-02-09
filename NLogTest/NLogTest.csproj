@@ -72,6 +72,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ILogAdapter.cs" />
+    <Compile Include="ILogFabric.cs" />
+    <Compile Include="NLogFabric.cs" />
     <Compile Include="NetworkProcessor.cs" />
     <Compile Include="NLogLogAdaper.cs" />
     <Compile Include="Program.cs" />

@@ -17,7 +17,7 @@ namespace NLogTest
             ConfigureContainer();
 
 
-            ILogAdapter logger = ServiceLocator.Current.GetInstance<ILogAdapter>();
+            ILogAdapter logger = ServiceLocator.Current.GetInstance<ILogFabric>().GetLogger();
 
             logger.Debug("test");
             var networks = new List<int>() { 1, 2, 3, 4, 5 };
@@ -42,7 +42,10 @@ namespace NLogTest
         private static void ConfigureContainer()
         {
             var container = new UnityContainer();
-            container.RegisterType<ILogAdapter>(new InjectionFactory(f => new NLogLogAdaper(LogManager.GetCurrentClassLogger())));
+
+            //container.RegisterType<ILogAdapter>(new InjectionFactory(f => new NLogLogAdaper(LogManager.GetCurrentClassLogger())));
+            container.RegisterType<ILogFabric, NLogFabric>();
+
             var locator = new UnityServiceLocator(container);
             ServiceLocator.SetLocatorProvider(() => locator);
         }

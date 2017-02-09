@@ -15,7 +15,7 @@ namespace NLogTest
             NetworkId = networkId;
             //FileTarget target = LogManager.Configuration.FindTargetByName<FileTarget>("networkFile");
             //target.FileName = $"network{networkId}_{target.FileName}";
-            logger = ServiceLocator.Current.GetInstance<ILogAdapter>();
+            logger = ServiceLocator.Current.GetInstance<ILogFabric>().GetLogger(this.GetType().FullName);
         }
 
         public void Process()

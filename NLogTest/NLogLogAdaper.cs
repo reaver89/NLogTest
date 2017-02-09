@@ -11,6 +11,11 @@ namespace NLogTest
     {
         private readonly Logger _logger;
 
+        public NLogLogAdaper()
+        {
+            _logger = LogManager.GetCurrentClassLogger();
+        }
+
         public NLogLogAdaper(Logger logger)
         {
             _logger = logger;
