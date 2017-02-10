@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using NLogTest.Logging;
+using NLogTest.Logging.Modules;
 
 namespace NLogTest
 {

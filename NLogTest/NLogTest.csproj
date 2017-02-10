@@ -55,11 +55,11 @@
     <Compile Include="ApplicationModule.cs" />
     <Compile Include="IApplication.cs" />
     <Compile Include="Logging\ILogAdapter.cs" />
-    <Compile Include="Logging\LogModule.cs" />
+    <Compile Include="Modules\LogModule.cs" />
     <Compile Include="MainProcessor.cs" />
     <Compile Include="NetworkProcessor.cs" />
-    <Compile Include="Logging\NLogLogAdaper.cs" />
-    <Compile Include="Logging\NLogModule.cs" />
+    <Compile Include="Logging\NLogLogAdapter.cs" />
+    <Compile Include="Modules\NLogModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

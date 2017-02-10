@@ -1,29 +1,31 @@
 ﻿using Autofac;
-using NLogTest.Logging;
+using NLogTest.Modules;
+using NLogTest.Test.LoggingTests.Common;
 using NUnit.Framework;
 
 namespace NLogTest.Test.LoggingTests
 {
-
+    [TestFixture]
     public class NLogModuleTest
     {
         private IContainer _container;
 
-        [SetUp]
+        [OneTimeSetUp]
         public void  SetUp()
         {
             var builder = new ContainerBuilder();
 
             builder.RegisterModule<NLogModule>();
-            builder.RegisterType<SimpleClassWithContructorInjection>().AsSelf();
-            builder.RegisterType<SimpleClassWithLoggerProperty>().AsSelf();
+            builder.RegisterType<SampleClassWithContructorInjection>().AsSelf();
+            builder.RegisterType<SampleClassWithLoggerProperty>().AsSelf();
+
             _container = builder.Build();
         }
 
         [Test]
         public void NLogModule_Constructor_Injection_Resolved()
         {
-            var simpleClass = _container.Resolve<SimpleClassWithContructorInjection>();
+            var simpleClass = _container.Resolve<SampleClassWithContructorInjection>();
 
             Assert.IsNotNull(simpleClass.Logger);
         }
@@ -31,7 +33,7 @@ namespace NLogTest.Test.LoggingTests
         [Test]
         public void NLogModule_Property_Injection_Resolved()
         {
-            var simpleClass = _container.Resolve<SimpleClassWithLoggerProperty>();
+            var simpleClass = _container.Resolve<SampleClassWithLoggerProperty>();
 
             Assert.IsNotNull(simpleClass.Logger);
         }

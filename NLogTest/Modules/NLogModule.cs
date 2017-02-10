@@ -2,9 +2,10 @@
 using System.Reflection;
 using Autofac.Core;
 using NLog;
+using NLogTest.Logging;
 using Module = Autofac.Module;
 
-namespace NLogTest.Logging
+namespace NLogTest.Modules
 {
     public class NLogModule : Module
     {
@@ -18,7 +19,7 @@ namespace NLogTest.Logging
 
             foreach (var propToSet in properties)
             {
-                propToSet.SetValue(instance, new NLogLogAdaper(LogManager.GetLogger(instanceType.FullName)), null);
+                propToSet.SetValue(instance, new NLogLogAdapter(LogManager.GetLogger(instanceType.FullName)), null);
             }
         }
 
@@ -29,7 +30,7 @@ namespace NLogTest.Logging
                 new[]
                 {
                     new ResolvedParameter((p, i) => p.ParameterType == typeof (ILogAdapter),
-                        (p, i) => new NLogLogAdaper(LogManager.GetLogger(t.FullName)))
+                        (p, i) => new NLogLogAdapter(LogManager.GetLogger(t.FullName)))
                 });
         }
 

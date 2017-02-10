@@ -1,8 +1,8 @@
 ﻿using NLogTest.Logging;
 
-namespace NLogTest.Test.LoggingTests
+namespace NLogTest.Test.LoggingTests.Common
 {
-    public class SimpleClassWithLoggerProperty
+    public class SampleClassWithLoggerProperty
     {
         public ILogAdapter Logger { get; set; }
     }

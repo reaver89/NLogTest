@@ -2,16 +2,16 @@
 
 namespace NLogTest.Logging
 {
-    public class NLogLogAdaper : ILogAdapter
+    public class NLogLogAdapter : ILogAdapter
     {
         private readonly Logger _logger;
 
-        public NLogLogAdaper()
+        public NLogLogAdapter()
         {
             _logger = LogManager.GetCurrentClassLogger();
         }
 
-        public NLogLogAdaper(Logger logger)
+        public NLogLogAdapter(Logger logger)
         {
             _logger = logger;
         }

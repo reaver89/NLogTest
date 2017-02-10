@@ -48,10 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LoggingTests\SimpleClassWithContructorInjection.cs" />
-    <Compile Include="LoggingTests\SimpleClassWithLoggerProperty.cs" />
+    <Compile Include="LoggingTests\Common\ISampleLoggingClass.cs" />
+    <Compile Include="LoggingTests\Common\SampleClassWithContructorInjection.cs" />
+    <Compile Include="LoggingTests\Common\SampleClassWithLoggerProperty.cs" />
+    <Compile Include="LoggingTests\LogModuleTest.cs" />
     <Compile Include="LoggingTests\NLogModuleTest.cs" />
-    <Compile Include="NetworkProcessorTests.cs" />
+    <Compile Include="LoggingTests\Common\SampleClassWithServiceLocatorInjection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
